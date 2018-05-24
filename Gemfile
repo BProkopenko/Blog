@@ -48,3 +48,11 @@ gem 'bootstrap', '~> 4.1.1'
 
 # Test
 gem 'rails-controller-testing'
+
+# Fake users
+gem 'faker'
+
+# Pages pagination
+gem 'will_paginate', '~> 3.1.0'
+#gem 'bootstrap-will_paginate'
+gem 'will_paginate-bootstrap4'
