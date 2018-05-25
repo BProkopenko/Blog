@@ -1,5 +1,5 @@
 <header id="header">
-  <%= link_to "Home", "#Sections_path" %>
+  <%= link_to "Home", root_path %>
   <% if logged_in? %>
     <%= link_to "Profile", current_user %>
     <%= link_to "Settings", edit_user_path(current_user) %>

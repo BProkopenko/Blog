@@ -21,7 +21,7 @@ class UserTest < ActiveSupport::TestCase
 	end
 
 	test "name should not be to long" do
-		@user.name = "a" * 23
+		@user.name = "a" * 51
 		assert_not @user.valid?
 	end
 
@@ -54,5 +54,11 @@ foo@bar_baz.com foo@bar+baz.com foo@bar..com]
 		assert_not @user.authenticated?(:remember, '')
 	end
 
-
+  test "associated posts should be destroyed" do
+	  @user.save
+	  @user.posts.create!(content: "Lorem ipsum")
+	  assert_difference 'Post.count', -1 do
+		  @user.destroy
+	  end
+  end
 end
