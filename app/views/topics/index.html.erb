@@ -1,0 +1,11 @@
+<% if @topics.any? %>
+  <% @topics.each do |topic| %>
+    <div><%= link_to topic.theme, topic_path(topic.id) %></div>
+    <div><%= topic.description %></div>
+    <div>
+      <%= link_to "Edit", edit_topic_path(topic.id) %>
+      <%= link_to "Delete", topic_path(topic.id), method: :delete, data: {
+          confirm: "The topic "+topic.theme+" will be removed. \n Are you sure?"} %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,16 @@
+<div>
+  <h2><%= @topic.theme %></h2>
+  <div><%= @topic.description %></div>
+</div>
+<div>
+  <h3>Posts</h3>
+  <div>
+    <% @posts.each do |post| %>
+      <div><%= post.title %></div>
+      <%= link_to "Show", post_path %>
+      <%= link_to "Edit", edit_post_path %>
+      <%= link_to "Delete", post, method: :delete, data: {confirm: "Are you shure?"} %>
+    <% end %>
+  </div>
+  <%= will_paginate @posts %>
+</div>

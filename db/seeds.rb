@@ -7,9 +7,22 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create!(name: "Vasya Pupkin",
              email: "vasvas@mail.com",
-             password: "foobar",
-             password_confirmation: "foobar",
+             password: "123456",
+             password_confirmation: "123456",
              admin: true,
+             activated: true,
+             activated_at: Time.zone.now)
+User.create!(name: "petya Pupkin",
+             email: "pet@mail.com",
+             password: "123456",
+             password_confirmation: "123456",
+             moder: true,
+             activated: true,
+             activated_at: Time.zone.now)
+User.create!(name: "vova Pupkin",
+             email: "vov@mail.com",
+             password: "123456",
+             password_confirmation: "123456",
              activated: true,
              activated_at: Time.zone.now)
 99.times do |n|
@@ -27,6 +40,7 @@ end
 # Posts
 users = User.order(:created_at).take(6)
 50.times do
+	title = Faker::Lorem.sentence(2, false, 2 )
 	content = Faker::Lorem.sentence(5)
-	users.each { |user| user.posts.create!(content: content) }
+	users.each { |user| user.posts.create!(content: content, title: title) }
 end

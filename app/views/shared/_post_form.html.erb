@@ -1,13 +1,13 @@
-<%= form_for(@post, html: { multipart: true }) do |f| %>
+<%= form_for( @post, html: { multipart: true }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div>
-    <%= f.text_area :content, placeholder: "Create new post..." %>
-  </div>
-  <%= f.submit "Post" %>
-  <span class="picture">
-    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-
-  </span>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :topic_id %>
+  <%= f.select(:topic_id, options_for_select(@topics)) %>
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+  <%= f.submit "Save" %>
+  <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
 <% end %>
 <script type="text/javascript">
     $('#post_picture').bind('change', function() {
