@@ -3,8 +3,11 @@ class PostsController < ApplicationController
 	before_action :correct_user, only: :destroy
 
 	def show
+
 		@post = Post.find(params[:id])
 		@topic = Topic.find(@post.topic_id)
+		@comments = @post.comments
+		@comment = @post.comments.build(comment_params)
 	end
 
 	def create

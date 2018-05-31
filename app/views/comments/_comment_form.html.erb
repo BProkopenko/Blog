@@ -1,0 +1,5 @@
+<%= form_for @comment  do |f| %>
+  <%= hidden_field_tag :id, @post.id %>
+  <%= f.text_area :body, placeholder: "Your comment" %>
+  <%= f.submit "Save" %>
+<% end %>

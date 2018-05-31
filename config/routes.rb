@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :comments, only: [:new, :create, :destroy]
+
   get 'home' => 'pages/home'
 
   get 'password_resets/new'

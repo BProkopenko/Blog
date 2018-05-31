@@ -25,6 +25,15 @@ User.create!(name: "vova Pupkin",
              password_confirmation: "123456",
              activated: true,
              activated_at: Time.zone.now)
+Topic.create(theme: "Science",
+             description: "About science",
+             user_id: 1)
+Topic.create(theme: "Society",
+             description: "Social questions",
+             user_id: 1)
+Topic.create(theme: "Movies",
+             description: "About movies",
+             user_id: 1)
 99.times do |n|
 	name = Faker::Name.name
 	email = "example-#{n+1}@mail.org"
@@ -42,5 +51,13 @@ users = User.order(:created_at).take(6)
 50.times do
 	title = Faker::Lorem.sentence(2, false, 2 )
 	content = Faker::Lorem.sentence(5)
-	users.each { |user| user.posts.create!(content: content, title: title) }
+	users.each { |user| user.posts.create!(content: content, title: title, topic_id: rand(1..3)) }
+end
+
+# add comment to posts
+posts = Post.order(:created_at).take(300)
+50.times do
+
+	body = Faker::Lorem.sentence(2, false, 2 )
+	posts.each { |post| post.comments.create!(body: body, user: User.find_by(id: rand(1..40)) )}
 end
