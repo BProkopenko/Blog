@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :comments, only: [:new, :create, :destroy]
 
   get 'home' => 'pages/home'
 
@@ -26,6 +25,8 @@ Rails.application.routes.draw do
 	resources :password_resets, only: [:new, :create, :edit, :update]
 
   resources :posts
+
+  post 'create_comment' => 'posts#create_comment'
 
 	resources :topics
 

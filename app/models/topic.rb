@@ -4,7 +4,5 @@ class Topic < ApplicationRecord
 	default_scope -> { order(created_at: :desc) }
 	validates :theme, presence: true
 
-	def current_topic
-		@current_topic = Topic.find(params[:id])
-	end
+
 end

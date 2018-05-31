@@ -1,4 +1,4 @@
-<%= form_for @comment  do |f| %>
+<%= form_for @comment, url: {action: "create_comment"}, html: {class: "nifty_form"} do |f| %>
   <%= hidden_field_tag :id, @post.id %>
   <%= f.text_area :body, placeholder: "Your comment" %>
   <%= f.submit "Save" %>
