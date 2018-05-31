@@ -2,5 +2,6 @@
   <div>
     <div><%= link_to comment.user.name, comment.user %></div>
     <div><%= comment.body %></div>
+    <div><%= link_to "delete", delete_comment_path(id: comment.id), method: :delete, data: {confirm: "Are you sure?"} %></div>
   </div>
 <% end %>

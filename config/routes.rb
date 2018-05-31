@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
   post 'create_comment' => 'posts#create_comment'
 
+  delete 'delete_comment' => 'comments#destroy'
+
 	resources :topics
 
 
