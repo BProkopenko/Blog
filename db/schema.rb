@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20180530145423) do
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "post_id"
-    t.text     "body"
+    t.text     "body",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
@@ -23,23 +23,24 @@ ActiveRecord::Schema.define(version: 20180530145423) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.text     "content"
+    t.text     "content",                    null: false
     t.integer  "user_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.string   "picture"
     t.integer  "topic_id"
     t.string   "title"
-    t.boolean  "new",        default: true
-    t.boolean  "accepted",   default: false
-    t.boolean  "pending",    default: false
+    t.boolean  "new_post",   default: true,  null: false
+    t.boolean  "accepted",   default: false, null: false
+    t.boolean  "pending",    default: false, null: false
+    t.boolean  "rejected",   default: false, null: false
     t.index ["topic_id"], name: "index_posts_on_topic_id"
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "topics", force: :cascade do |t|
-    t.string   "theme"
+    t.string   "theme",       null: false
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -49,19 +50,19 @@ ActiveRecord::Schema.define(version: 20180530145423) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
+    t.string   "name",                              null: false
+    t.string   "email",                             null: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.string   "password_digest"
     t.string   "remember_digest"
-    t.boolean  "admin",             default: false
+    t.boolean  "admin",             default: false, null: false
     t.string   "activation_digest"
     t.boolean  "activated",         default: false
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
-    t.boolean  "moder",             default: false
+    t.boolean  "moder",             default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

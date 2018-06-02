@@ -1,13 +1,15 @@
 class PostsController < ApplicationController
 	before_action :logged_in_user, only: [:create, :edit, :update, :destroy]
-	before_action :correct_user, only: [:destroy, :delete_comment]
-	before_action :correct_commenter, only: [:delete_comment]
+	before_action :correct_user, only: [:destroy]
+
+	include PostsHelper
 
 	def show
 		@post = Post.find(params[:id])
-	  @topic = Topic.find(@post.topic_id)
+		@topic = Topic.find(@post.topic_id)
 		@comments = @post.comments
 		@comment = Comment.new
+		@post_status = post_status
 	end
 
 	def show_comments
@@ -27,16 +29,33 @@ class PostsController < ApplicationController
 
 	def edit
 		@post = Post.find(params[:id])
-		@topics = Topic.all.map{|u| [ u.theme, u.id ] }
+		@topics = Topic.all.map {|u| [u.theme, u.id]}
 	end
 
 	def update
 		@post = Post.find(params[:id])
-		if @post.update_attributes(post_params)
-			flash[:success] = "Post updated"
-			redirect_to show
+		#@post_status = post_status
+
+		if @post.accepted? || @post.rejected?
+			update_params = post_params.merge!({
+					new_post: false,
+					accepted: false,
+					pending: true,
+					rejected: false
+			})
+			if @post.update_attributes(update_params)
+				flash[:success] = "Post updated"
+				redirect_to @post
+			else
+				render edit
+			end
 		else
-			render edit
+			if @post.update_attributes(post_params)
+				flash[:success] = "Post updated"
+				redirect_to @post
+			else
+				render "edit"
+			end
 		end
 	end
 
@@ -49,9 +68,7 @@ class PostsController < ApplicationController
 
 	def create_comment
 		@post = Post.find(params[:id])
-		params = comment_params
-		params["user_id"] = current_user.id
-		@comment = @post.comments.create(params)
+		@comment = @post.comments.create(comment_params.merge!({user_id: current_user.id}))
 		if @comment.save
 			flash[:success] = "Comment saved"
 			redirect_to @post
@@ -59,8 +76,6 @@ class PostsController < ApplicationController
 			redirect_to root_url
 		end
 	end
-
-
 
 
 	private
@@ -77,7 +92,6 @@ class PostsController < ApplicationController
 		@post = current_user.posts.find_by(id: params[:id])
 		redirect_to root_url if @post.nil?
 	end
-
 
 
 end

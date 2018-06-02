@@ -1,0 +1,10 @@
+<div>
+  <h2>New Posts</h2>
+  <div>
+    <% if @posts.any? %>
+      <%= will_paginate @posts %>
+      <%= render @posts %>
+      <%= will_paginate @posts %>
+    <% end %>
+  </div>
+</div>

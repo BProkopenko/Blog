@@ -1,9 +1,19 @@
 <div>
   <h1><%= link_to @topic.theme, @topic %></h1>
   <h2><%= @post.title %></h2>
+  <h4><%= @post_status %></h4>
   <div><%= @post.content %></div>
   <%= link_to "Edit", edit_post_path %>
   <%= link_to "Delete", post_path, method: :delete, data: {confirm: "Are you sure?"} %>
+  <% if current_user.moder? %>
+    <%= form_for(@post, url: moderation_path, html: {method: "patch"}) do |f| %>
+      <%= f.radio_button :accepted, 'accept'  %>
+      <%= f.label :accepted_accept, 'Accept' %>
+      <%= f.radio_button :accepted, 'decline', :checked => true%>
+      <%= f.label :accepted_decline, 'Decline' %>
+      <%= f.submit 'Save' %>
+    <% end %>
+  <% end %>
   <%= render 'comment_form' %>
   <%= render 'comments_feed' %>
 

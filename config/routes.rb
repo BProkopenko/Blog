@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'moderation/new_posts'
+
+  get 'moderation/pending'
+
+  resources :moderation, only: [:update]
+
   get 'home' => 'pages/home'
 
   get 'password_resets/new'
@@ -17,6 +23,8 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
 
 	resources :users
+
+  resources :admin
 
 	root to: 'pages#home'
 
