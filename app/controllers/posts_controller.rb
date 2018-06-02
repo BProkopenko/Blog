@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 	def show
 		@post = Post.find(params[:id])
 		@topic = Topic.find(@post.topic_id)
-		@comments = @post.comments
+		@comments = @post.comments.paginate(page: params[:page])
 		@comment = Comment.new
 		@post_status = post_status
 	end

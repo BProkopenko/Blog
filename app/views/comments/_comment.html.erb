@@ -1,0 +1,9 @@
+<div class="container commentBody">
+  <div><%= link_to comment.user.name, comment.user %> <%= time_ago_in_words(comment.created_at) %></div>
+
+  <div class="commentBodyContent"><%= comment.body %></div>
+  <% if comment.user == current_user || current_user.admin? || current_user.moder? %>
+    <div class="deleteCommentLink"><%= link_to "delete", delete_comment_path(id: comment.id), method: :delete, data: {
+        confirm: "Are you sure?"} %></div>
+  <% end %>
+</div>

@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
-	before_action :logged_in_user && :admin?, except: [:index]
+	before_action :logged_in_user, only: [:index, :show]
+	before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
 
 	def index
 		@topics = Topic.all.paginate(page: params[:page])

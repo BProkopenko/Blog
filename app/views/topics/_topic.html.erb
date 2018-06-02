@@ -1,0 +1,10 @@
+<div><%= link_to topic.theme, topic_path(topic.id) %></div>
+<%= pluralize(topic.posts.count, "post") %>
+<div><%= topic.description %></div>
+<% if current_user.admin? %>
+  <div>
+    <%= link_to "Edit", edit_topic_path(topic.id) %>
+    <%= link_to "Delete", topic_path(topic.id), method: :delete, data: {
+        confirm: "The topic " + topic.theme + " will be removed. \n Are you sure?"} %>
+  </div>
+<% end %>

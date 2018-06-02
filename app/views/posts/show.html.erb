@@ -1,20 +1,40 @@
-<div>
-  <h1><%= link_to @topic.theme, @topic %></h1>
-  <h2><%= @post.title %></h2>
-  <h4><%= @post_status %></h4>
-  <div><%= @post.content %></div>
-  <%= link_to "Edit", edit_post_path %>
-  <%= link_to "Delete", post_path, method: :delete, data: {confirm: "Are you sure?"} %>
-  <% if current_user.moder? %>
-    <%= form_for(@post, url: moderation_path, html: {method: "patch"}) do |f| %>
-      <%= f.radio_button :accepted, 'accept'  %>
-      <%= f.label :accepted_accept, 'Accept' %>
-      <%= f.radio_button :accepted, 'decline', :checked => true%>
-      <%= f.label :accepted_decline, 'Decline' %>
-      <%= f.submit 'Save' %>
+<div class="postInfo container">
+  <h1 class="postHeader"><%= @post.title %></h1>
+  <%= link_to @topic.theme, @topic, class: "postTopic" %>
+  <div class="postEditLinks">
+    <%= link_to "Edit", edit_post_path, class: "btn btn-primary" %>
+    <%= link_to "Delete", post_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+  </div>
+  <div>
+    <% if current_user.moder? %>
+      <%= form_for(@post, url: moderation_path, html: {method: "patch"}) do |f| %>
+
+        <%= f.radio_button :accepted, 'accept' %>
+        <%= f.label :accepted_accept, 'Accept' %>
+        <%= f.radio_button :accepted, 'decline', :checked => true %>
+        <%= f.label :accepted_decline, 'Decline' %>
+        <%= f.submit 'Save', class: "btn btn-warning postModerSave btn-sm" %>
+      <% end %>
     <% end %>
-  <% end %>
+    <div>
+      <span class="postStatus"><%= @post_status %></span>
+      <% if @post.user == current_user || current_user.admin? || current_user.moder? %>
+
+      <% end %>
+
+
+
+
+    </div>
+    <div class="postContent container"><%= @post.content %></div>
+
+  </div>
+
+
+
+
   <%= render 'comment_form' %>
+  <h2>Comments</h2>
   <%= render 'comments_feed' %>
 
 </div>

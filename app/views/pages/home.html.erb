@@ -1,21 +1,17 @@
 <% if logged_in? %>
-  <div>
-    <aside>
-      <section class="user_info">
-        <%= render 'shared/user_info' %>
-      </section>
-      <section class="post_form">
-        <%= render 'shared/post_form' %>
-      </section>
-    </aside>
+  <div class="container">
+    <%= render 'shared/user_info' %>
+  </div>
 
+  <div class="container">
+    <%= render 'shared/post_form' %>
   </div>
 <% else %>
-  <div>
+  <div class="container">
     <h1>Welcome to the Myblog</h1>
     <h2>
       This is the home page for the Myblog
     </h2>
-    <%= link_to "Sign up now!", signup_path%>
+    <%= link_to "Sign up now!", signup_path %>
   </div>
 <% end %>
