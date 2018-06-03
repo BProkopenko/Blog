@@ -14,7 +14,6 @@ class UsersController < ApplicationController
 		else
 			@posts = @user.posts.where("accepted= ?", true).paginate(page: params[:page])
 		end
-
 		redirect_to root_url and return unless @user.activated
 	end
 
