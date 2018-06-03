@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
 
 	def show
 		@topic = Topic.find(params[:id])
-		@posts = posts_feed.paginate(page: params[:page])
+		@posts = posts_feed.where(topic_id: @topic.id).paginate(page: params[:page])
 	end
 
 	def new
