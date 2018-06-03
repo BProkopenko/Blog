@@ -1,7 +1,7 @@
 <div class="container">
   <div class="topicHeader">
     <span class="topicHeaderHead"><h2><%= link_to topic.theme, topic_path(topic.id) %></h2></span>
-    <span class="topicHeaderCount"><%= pluralize(topic.posts.count, "post") %></span>
+    <span class="topicHeaderCount"><%= pluralize(topic.posts.where(accepted:true).count, "post") %></span>
   </div>
   <% if !topic.description.blank? %>
     <div class="topicDescription "><%= topic.description %></div>

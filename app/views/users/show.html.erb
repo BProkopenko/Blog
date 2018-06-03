@@ -21,7 +21,7 @@
 </div>
 <% if @user.posts.any? %>
   <span class="userPostsHeader">
-     Posts (<%= @user.posts.count %>)
+     Posts (<%= @user.posts.where(accepted: true).count %>)
   </span>
   <%= render @posts %>
   <%= will_paginate @posts %>
