@@ -1,9 +1,9 @@
-<%= form_for( @post, url: post_path, html: {method: "patch"},class: "form-group" ) do |f| %>
+<%= form_for(@post, url: post_path, html: {method: "patch"}, class: "form-group") do |f| %>
   <%= f.label :title, class: "col-sm-2 col-form-label col-form-label-lg" %>
-  <%= f.text_field :title,class: "form-control" %>
+  <%= f.text_field :title, class: "form-control" %>
   <%= f.label :topic_id, class: "col-sm-2 col-form-label col-form-label-lg" %>
-  <%= f.select :topic_id, options_for_select(@topics), html_options = {class: "custom-select"}  %>
+  <%= f.select :topic_id, options_for_select(@topics), {}, {:class => "form-control"} %>
   <%= f.label :content, class: "col-sm-2 col-form-label col-form-label-lg" %>
   <%= f.text_area :content, class: "form-control" %>
-  <%= f.submit "Save",class:"btn btn-outline-secondary" %>
+  <%= f.submit "Save", class: "btn btn-primary" %>
 <% end %>

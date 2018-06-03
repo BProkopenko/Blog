@@ -1,8 +1,8 @@
-<%= form_for(@topic) do |f| %>
+<%= form_for @topic do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <%= f.label :theme %>
-  <%= f.text_field :theme %>
+  <%= f.text_field :theme, class: "form-control", placeholder: "Theme" %>
   <%= f.label :description %>
-  <%= f.text_area :description %>
-  <%= f.submit "Save" %>
+  <%= f.text_area :description, class: "form-control", placeholder: "Description" %>
+  <%= f.submit "Save", class: "btn btn-primary" %>
 <% end %>

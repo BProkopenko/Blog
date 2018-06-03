@@ -73,6 +73,7 @@ class User < ApplicationRecord
 	def feed
 		Post.where("user_id = ?", id)
 	end
+
 	private
 
 	# Change email to downcase

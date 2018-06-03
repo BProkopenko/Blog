@@ -1,5 +1,4 @@
 module PostsHelper
-
 	def post_status
 		if @post.new_post? && !@post.pending? && !@post.accepted && !@post.rejected?
 			"New"
@@ -12,7 +11,5 @@ module PostsHelper
 		else
 			"Undefined post status"
 		end
-
 	end
-
 end

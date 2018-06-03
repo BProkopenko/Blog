@@ -1,30 +1,29 @@
 <% provide(:title, @user.name) %>
-<div>
-  <div><%= @user.name %></div>
+<div class="userInfo">
+  <span class="userName">
+    <%= @user.name %>
+  </span>
+  <span class="userStatus">
   <% if @user.admin? %>
-    <div>Administrator</div>
+    Administrator
   <% elsif @user.moder? %>
-    <div>Moderator</div>
+    Moderator
   <% else %>
-    <div>User</div>
+    User
   <% end %>
+</span>
   <% if current_user.admin? && current_user != @user %>
-    <div><%= @user.email %></div>
-    <div>
-      <%= form_for(@user, url: admin_path, html: {method: "patch"}) do |f| %>
-        <%= f.check_box :moder %>
-        <%= f.label :moder, "Assign moderator" %>
-        <%= f.submit 'Save' %>
-      <% end %>
+    <span class="userEmail">
+      <%= @user.email %>
+    </span>
+    <%= render 'admin_user_form' %>
   <% end %>
-  </div>
-  <div>
-    <% if @user.posts.any? %>
-      <h3>Posts (<%= @user.posts.count %>)</h3>
-
-        <%= render @posts %>
-
-      <%= will_paginate @posts %>
-    <% end %>
-  </div>
 </div>
+<% if @user.posts.any? %>
+  <span class="userPostsHeader">
+     Posts (<%= @user.posts.count %>)
+  </span>
+  <%= render @posts %>
+  <%= will_paginate @posts %>
+<% end %>
+

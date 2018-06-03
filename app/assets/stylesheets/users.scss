@@ -1,3 +1,33 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.userAdminForm{
+  text-align: center;
+  border: rgba(46, 47, 48, 0.15) solid 1px;
+  padding: 10px;
+
+  .btnAdminBtn{
+    display: flex;
+
+    margin: auto;
+  }
+}
+.userName{
+  font-weight: bold;
+  font-size: large;
+  color: rgba(0, 15, 255, 0.64);
+}
+
+.userStatus,.userEmail{
+  font-weight: lighter;
+  color: rgba(0, 0, 0, 0.49);
+}
+.userPostsHeader{
+  font-weight: bold;
+  display: block;
+  color: #2E2F30;
+  margin-top: 20px;
+  width: 10%;
+  text-align: right;
+  margin-left: 90%;
+}

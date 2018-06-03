@@ -34,15 +34,13 @@ class PostsController < ApplicationController
 
 	def update
 		@post = Post.find(params[:id])
-		#@post_status = post_status
-
 		if @post.accepted? || @post.rejected?
 			update_params = post_params.merge!({
-					new_post: false,
-					accepted: false,
-					pending: true,
-					rejected: false
-			})
+					                                   new_post: false,
+					                                   accepted: false,
+					                                   pending: true,
+					                                   rejected: false
+			                                   })
 			if @post.update_attributes(update_params)
 				flash[:success] = "Post updated"
 				redirect_to @post
@@ -65,7 +63,6 @@ class PostsController < ApplicationController
 		redirect_to root_url
 	end
 
-
 	def create_comment
 		@post = Post.find(params[:id])
 		@comment = @post.comments.create(comment_params.merge!({user_id: current_user.id}))
@@ -76,7 +73,6 @@ class PostsController < ApplicationController
 			redirect_to root_url
 		end
 	end
-
 
 	private
 
@@ -92,6 +88,4 @@ class PostsController < ApplicationController
 		@post = current_user.posts.find_by(id: params[:id])
 		redirect_to root_url if @post.nil?
 	end
-
-
 end

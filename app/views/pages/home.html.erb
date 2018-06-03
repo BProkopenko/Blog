@@ -1,11 +1,11 @@
 <% if logged_in? %>
-  <div class="container">
+  <div class="container userInfo">
     <%= render 'shared/user_info' %>
   </div>
-
   <div class="container">
     <%= render 'shared/post_form' %>
   </div>
+  <% render 'shared/feed' %>
 <% else %>
   <div class="container">
     <h1>Welcome to the Myblog</h1>

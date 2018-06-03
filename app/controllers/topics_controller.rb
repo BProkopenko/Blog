@@ -8,7 +8,6 @@ class TopicsController < ApplicationController
 
 	def show
 		@topic = Topic.find(params[:id])
-
 		@posts = Post.where(topic_id: params[:id]).paginate(page: params[:page])
 	end
 
@@ -22,7 +21,7 @@ class TopicsController < ApplicationController
 			flash[:success] = "Topic created!"
 			redirect_to request.referrer || root_url
 		else
-			render new
+			render 'new'
 		end
 	end
 
@@ -36,6 +35,7 @@ class TopicsController < ApplicationController
 			flash.now[:success] = "Topic updated"
 			render 'edit'
 		else
+			flash.now[:success] = "Something wrong. \nPlease try again later."
 			render 'edit'
 		end
 	end
@@ -51,5 +51,4 @@ class TopicsController < ApplicationController
 	def topic_params
 		params.require(:topic).permit(:theme, :description)
 	end
-
 end

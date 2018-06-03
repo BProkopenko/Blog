@@ -1,0 +1,7 @@
+<div class="container userAdminForm">
+  <%= form_for(@user, url: admin_path, html: {method: "patch"}) do |f| %>
+    <%= f.check_box :moder %>
+    <%= f.label :moder, "Assign moderator" %>
+    <%= f.submit 'Save', class: "btn btn-primary btnAdminBtn" %>
+  <% end %>
+</div>

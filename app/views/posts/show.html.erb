@@ -8,7 +8,6 @@
   <div>
     <% if current_user.moder? %>
       <%= form_for(@post, url: moderation_path, html: {method: "patch"}) do |f| %>
-
         <%= f.radio_button :accepted, 'accept' %>
         <%= f.label :accepted_accept, 'Accept' %>
         <%= f.radio_button :accepted, 'decline', :checked => true %>
@@ -19,22 +18,11 @@
     <div>
       <span class="postStatus"><%= @post_status %></span>
       <% if @post.user == current_user || current_user.admin? || current_user.moder? %>
-
       <% end %>
-
-
-
-
     </div>
     <div class="postContent container"><%= @post.content %></div>
-
   </div>
-
-
-
-
   <%= render 'comment_form' %>
   <h2>Comments</h2>
   <%= render 'comments_feed' %>
-
 </div>
