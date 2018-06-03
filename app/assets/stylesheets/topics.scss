@@ -1,23 +1,24 @@
 // Place all the styles related to the Topics controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.topicHeader{
-  .topicHeaderHead{
+.topicHeader {
+  .topicHeaderHead {
 
-    h2{
+    h2 {
       display: inline;
     }
-
   }
-  .topicHeaderCount{
+  .topicHeaderCount {
     display: inline;
   }
 }
-.topicAdminLinks{
+
+.topicAdminLinks {
   margin-top: 10px;
   margin-bottom: 20px;
 }
-.topicDescription{
+
+.topicDescription {
   color: rgba(46, 47, 48, 0.33);
   border: 0 solid;
   border-bottom-width: 1px;
