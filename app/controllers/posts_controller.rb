@@ -4,6 +4,10 @@ class PostsController < ApplicationController
 
 	include PostsHelper
 
+	def index
+		@posts = posts_feed
+	end
+
 	def show
 		@post = Post.find(params[:id])
 		@topic = Topic.find(@post.topic_id)

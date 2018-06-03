@@ -3,7 +3,7 @@ class AdminController < ApplicationController
 	before_action :admin_user
 
 	def index
-		@posts = posts_feed.paginate(page: params[:page])
+		@posts = posts_feed
 	end
 
 	def update #Assign moderator

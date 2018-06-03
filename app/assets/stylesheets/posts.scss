@@ -4,9 +4,7 @@
   background-color: rgba(190, 193, 195, 0.2);
   padding: 20px;
   .postUserName {
-    margin-right: 20px;
     font-size: 20px;
-    display: block;
   }
   .postDeleteLink {
     float: right;
@@ -90,4 +88,9 @@
     margin-left: 90%;
     margin-bottom: 10px;
   }
+}
+
+.postTopicTheme {
+
+  display: block;
 }
