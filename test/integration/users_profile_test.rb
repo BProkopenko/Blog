@@ -18,5 +18,4 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
 			assert_match post.content, response.body
 		end
 	end
-
 end

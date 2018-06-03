@@ -25,7 +25,6 @@ class PostsInterfaceTest < ActionDispatch::IntegrationTest
 		follow_redirect!
 		assert_match content, response.body
 
-
 		# Delete Post
 		assert_select 'a', text: 'delete'
 		first_post = @user.posts.paginate(page: 1).first

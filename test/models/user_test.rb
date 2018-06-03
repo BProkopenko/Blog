@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  def setup
-	  @user = User.new(name: "vasya", email: "vas@email.com",
-	                   password: "vasvas", password_confirmation: "vasvas")
-  end
+	def setup
+		@user = User.new(name: "vasya", email: "vas@email.com",
+		                 password: "vasvas", password_confirmation: "vasvas")
+	end
 
 	test "user should be valid" do
 		assert @user.valid?
@@ -38,12 +38,12 @@ foo@bar_baz.com foo@bar+baz.com foo@bar..com]
 		end
 	end
 
-  test "email addresses should be unique" do
-	  duplicate_user = @user.dup
-	  duplicate_user.email = @user.email.upcase
-	  @user.save
-	  assert_not duplicate_user.valid?
-  end
+	test "email addresses should be unique" do
+		duplicate_user = @user.dup
+		duplicate_user.email = @user.email.upcase
+		@user.save
+		assert_not duplicate_user.valid?
+	end
 
 	test "password should have a minimum length" do
 		@user.password = @user.password_confirmation = "a" * 5
@@ -54,11 +54,11 @@ foo@bar_baz.com foo@bar+baz.com foo@bar..com]
 		assert_not @user.authenticated?(:remember, '')
 	end
 
-  test "associated posts should be destroyed" do
-	  @user.save
-	  @user.posts.create!(content: "Lorem ipsum")
-	  assert_difference 'Post.count', -1 do
-		  @user.destroy
-	  end
-  end
+	test "associated posts should be destroyed" do
+		@user.save
+		@user.posts.create!(content: "Lorem ipsum")
+		assert_difference 'Post.count', -1 do
+			@user.destroy
+		end
+	end
 end
