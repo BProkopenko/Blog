@@ -8,7 +8,7 @@ class ModerationController < ApplicationController
 	end
 
 	def pending
-		@posts = Post.where("pending= ?", true)
+		@posts = Post.where("pending= ?", true).paginate(page: params[:page])
 	end
 
 	def update

@@ -8,13 +8,7 @@ class TopicsController < ApplicationController
 
 	def show
 		@topic = Topic.find(params[:id])
-		if current_user.admin?
-			@posts = Post.where("topic_id= ?", @topic.id).paginate(page: params[:page])
-		elsif current_user.moder?
-			@posts = Post.where("topic_id= ? AND (new_post= ? OR pending= ?)", @topic.id, true, true).paginate(page: params[:page])
-		else
-			@posts = Post.where("topic_id= ? AND accepted= ?", params[:id], true).paginate(page: params[:page])
-		end
+		@posts = posts_feed.paginate(page: params[:page])
 	end
 
 	def new

@@ -15,11 +15,11 @@ module PostsHelper
 
 	def posts_feed
 		if current_user.admin?
-
+			Post.all
 		elsif current_user.moder?
-
+			Post.where("new_post= ? OR pending= ?", true, true)
 		else
-
+			Post.where("accepted", true)
 		end
 	end
 end

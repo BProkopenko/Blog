@@ -1,0 +1,8 @@
+<h2>Pending Posts</h2>
+<% if @posts.any? %>
+  <div class="container">
+    <%= will_paginate @posts %>
+    <%= render @posts %>
+    <%= will_paginate @posts %>
+  </div>
+<% end %>

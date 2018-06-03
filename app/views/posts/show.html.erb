@@ -2,11 +2,11 @@
   <h1 class="postHeader"><%= @post.title %></h1>
   <%= link_to @topic.theme, @topic, class: "postTopic" %>
   <% if current_user == @post.user %>
-  <div class="postEditLinks">
-    <%= link_to "Edit", edit_post_path, class: "btn btn-primary" %>
-    <%= link_to "Delete", post_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
-  </div>
-    <% end %>
+    <div class="postEditLinks">
+      <%= link_to "Edit", edit_post_path, class: "btn btn-primary" %>
+      <%= link_to "Delete", post_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+    </div>
+  <% end %>
   <div>
     <% if current_user.moder? %>
       <%= form_for(@post, url: moderation_path, html: {method: "patch"}) do |f| %>
@@ -25,6 +25,8 @@
     <div class="postContent container"><%= @post.content %></div>
   </div>
   <%= render 'comment_form' %>
-  <h2>Comments</h2>
-  <%= render 'comments_feed' %>
+  <% if @post.comments.any? %>
+    <h2>Comments</h2>
+    <%= render 'comments_feed' %>
+  <% end %>
 </div>
