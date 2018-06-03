@@ -1,0 +1,6 @@
+<h1>Posts <% pluralize(@posts.count, "post") %></h1>
+<% if @posts.any? %>
+  <%= will_paginate @posts%>
+  <%= render @posts %>
+  <%= will_paginate @posts%>
+<% end %>

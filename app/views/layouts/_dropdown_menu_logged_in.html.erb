@@ -8,6 +8,7 @@
     <div class="dropdown-divider"></div>
     <% if current_user.admin? %>
       <%= link_to "Add topic", new_topic_path, class: "dropdown-item" %>
+      <%= link_to "All posts", admin_index_path, class: "dropdown-item" %>
     <% elsif current_user.moder? %>
       <%= link_to "New posts", moderation_new_posts_path, class: "dropdown-item" %>
       <%= link_to "Pending posts", moderation_pending_path, class: "dropdown-item" %>

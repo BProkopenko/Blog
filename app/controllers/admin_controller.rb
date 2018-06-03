@@ -3,8 +3,7 @@ class AdminController < ApplicationController
 	before_action :admin_user
 
 	def index
-		@posts = Post.all
-		@topics = Topic.all
+		@posts = posts_feed.paginate(page: params[:page])
 	end
 
 	def update #Assign moderator
@@ -16,6 +15,13 @@ class AdminController < ApplicationController
 			flash[:danger] = "Something wrong. \nPlease try again later."
 			redirect_to @user
 		end
+	end
+
+	def destroy
+		@post = Post.find(params[:id])
+		@post.destroy
+		flash[:success] = "Post deleted"
+		redirect_to(request.referrer || root_url)
 	end
 
 	private

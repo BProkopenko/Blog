@@ -3,8 +3,10 @@
     <%= link_to post.user.name, post.user, class: "postUserName" %>
     <div class="postTimestamp">Posted <%= time_ago_in_words(post.created_at) %> ago.</div>
     <%= link_to post.title, post, class: "postTitle" %>
-    <% if current_user?(post.user) or current_user.admin? %>
+    <% if current_user?(post.user)%>
       <%= link_to "delete", post, method: :delete, data: {confirm: "You sure?"}, class: "postDeleteLink btn btn-outline-danger btn-sm" %>
+      <% elsif current_user.admin? %>
+      <%= link_to "delete", admin_path(id: post.id), method: :delete, data: { confirm: "Are you sure?"}, class: "postDeleteLink btn btn-outline-danger btn-sm" %>
     <% end %>
     <div class="postCommentsCount">
       <%= pluralize(post.comments.count, "comment") %>
