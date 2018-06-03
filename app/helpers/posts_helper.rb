@@ -12,4 +12,14 @@ module PostsHelper
 			"Undefined post status"
 		end
 	end
+
+	def posts_feed
+		if current_user.admin?
+
+		elsif current_user.moder?
+
+		else
+
+		end
+	end
 end
