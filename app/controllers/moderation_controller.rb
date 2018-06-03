@@ -43,6 +43,6 @@ class ModerationController < ApplicationController
 	end
 
 	def moderator
-		redirect_to(root_url) unless current_user.moder?
+		redirect_to(root_url) && flash[:danger] = "Permission denied" unless current_user.moder?
 	end
 end

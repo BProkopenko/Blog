@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
 	resources :users
 
-  resources :admin
+  resources :admin, only: [:update]
 
 	root to: 'pages#home'
 
