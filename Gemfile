@@ -63,4 +63,3 @@ gem 'byebug', '3.4.0'
 # Images
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
-#gem 'fog'
