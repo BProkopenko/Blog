@@ -1,12 +1,18 @@
-#footer{
+#footer {
   background-color: rgba(248, 249, 250, 0.08);
   padding: auto;
   display: table;
-  a{
-    height: 100px;
+  margin-top: 50px;
+  a {
+    height: 30px;
     text-align: center;
     display: table-cell;
     width: 10%;
     margin: auto;
+    vertical-align: middle;
+  }
+  :hover {
+    background-color: rgba(46, 47, 48, 0.06);
+    border-radius: 10px;
   }
 }
