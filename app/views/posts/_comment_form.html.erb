@@ -1,4 +1,5 @@
 <%= form_for @comment, url: {action: "create_comment"}, html: {class: "input-group mb-3 col-md-5"} do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
   <%= hidden_field_tag :id, @post.id %>
   <%= f.text_area :body, placeholder: "Your comment", class: "form-control" %>
   <%= f.submit "Save", class: "btn btn-outline-secondary" %>

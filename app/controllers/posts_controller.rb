@@ -23,7 +23,7 @@ class PostsController < ApplicationController
 			redirect_to root_url
 		else
 			@feed_items = []
-			render 'pages/home'
+			redirect_to root_url
 		end
 	end
 
@@ -70,7 +70,7 @@ class PostsController < ApplicationController
 			flash[:success] = "Comment saved"
 			redirect_to @post
 		else
-			redirect_to root_url
+			redirect_to @post
 		end
 	end
 
