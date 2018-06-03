@@ -9,7 +9,12 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		@posts = @user.posts.paginate(page: params[:page])
+		if current_user == @user
+			@posts = @user.posts.paginate(page: params[:page])
+		else
+			@posts = @user.posts.where("accepted= ?", true).paginate(page: params[:page])
+		end
+
 		redirect_to root_url and return unless @user.activated
 	end
 
