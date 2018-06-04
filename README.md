@@ -1,3 +1,21 @@
+Rails 5.0.7
+Ruby 2.2.6p396
+
+Installation:
+1. Git clone
+2. bundle install
+3. rails db:create
+4. rails db:migrate
+5. rails db:seed (for demo)
+
+Admin account: vasvas@mail.com, password: 123456 (can be changed
+)\
+Moderator account: pet@mail.com, password: 123456 (can be changed
+)\
+User account: vov@mail.com, password: 123456 (can be changed
+)
+
+
 Блог. Ruby on Rails.\
 Cоздать полноценный блог, с аутентификацией и авторизацией. Должна быть возможность добавлять статьи, комментарии к ним, должно быть пару разделов для статей.
 
